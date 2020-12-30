@@ -3,6 +3,7 @@ import { to } from "await-to-js";
 import { verifyPassword, hashPassword } from "../auth/utils";
 import { login } from "../auth/strategies/jwt";
 import { createUser, getUserByEmail } from "../database/user";
+import { ROLES } from "../../utils";
 
 const router = express.Router();
 
@@ -60,6 +61,7 @@ router.post("/register", async (req, res) => {
       lastName,
       email,
       password: await hashPassword(password),
+      roles: ROLES.Customer,
     })
   );
 

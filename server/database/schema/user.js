@@ -9,6 +9,7 @@ const UserSchema = new Schema({
   displayName: String,
   providerId: String,
   provider: String,
+  role: String,
 });
 
 const UserModel = model("User", UserSchema);
