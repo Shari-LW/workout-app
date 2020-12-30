@@ -2,6 +2,7 @@ import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import { UserModel } from '../database/schema'
+import { ROLES } from '../../utils'
 
 const setup = () => {
   passport.serializeUser((user, done) => done(null, user._id))
@@ -35,3 +36,4 @@ const verifyPassword = async (candidate, actual) => {
   return await bcrypt.compare(candidate, actual)
 }
 
+export { setup, signToken, hashPassword, verifyPassword }
