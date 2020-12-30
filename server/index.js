@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 
 import router from "./router";
-import { connectToDatabase } from "./database/connection";
+import { connectToDatabase } from "./database/connection.js";
 import { initialiseAuthentication } from "./auth";
 
 const dev = process.env.NODE_ENV !== "production";
