@@ -1,7 +1,9 @@
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
+import { InputLabel } from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl";
 
-export default function WorkoutDurationSlider() {
+export default function WorkoutDurationSlider({ classes }) {
   const marks = [
     { value: 0, label: "0" },
     { value: 33, label: "15" },
@@ -19,9 +21,7 @@ export default function WorkoutDurationSlider() {
 
   return (
     <div>
-      <Typography id="discrete-slider-restrict" gutterBottom>
-        Duration (mins)
-      </Typography>
+      <InputLabel>Duration (mins)</InputLabel>
       <Slider
         defaultValue={33}
         valueLabelFormat={valueLabelFormat}

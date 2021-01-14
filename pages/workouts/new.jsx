@@ -48,6 +48,8 @@ const NewWorkoutForm = () => {
   const [formData, setFormData] = React.useState({ email: "", password: "" });
   const [submitting, setSubmitting] = React.useState(false);
 
+  const [workoutType, setWorkoutType] = React.useState(1);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
@@ -60,6 +62,23 @@ const NewWorkoutForm = () => {
       window.location.replace(data);
       return;
     }
+  };
+
+  const handleChange = async (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    setWorkoutType(e.target.value);
+
+    // const { email, password } = formData;
+    // const { success, data } = await server.postAsync("/auth/login", {
+    //   email,
+    //   password,
+    // });
+
+    // if (success) {
+    //   window.location.replace(data);
+    //   return;
+    // }
   };
 
   return (
@@ -84,16 +103,24 @@ const NewWorkoutForm = () => {
           onSubmit={handleSubmit}
           noValidate
         >
-          <Typography id="Type">Type</Typography>
-          <TextField margin="normal" fullWidth id="select" value="20" select>
-            <MenuItem value="1">Upper Body</MenuItem>
-            <MenuItem value="2">Lower Body</MenuItem>
-            <MenuItem value="3">Full Body</MenuItem>
-            <MenuItem value="4">Core</MenuItem>
-          </TextField>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={workoutType}
+              onChange={handleChange}
+              name="workout-type"
+            >
+              <MenuItem value={1}>Upper Body</MenuItem>
+              <MenuItem value={2}>Lower Body</MenuItem>
+              <MenuItem value={3}>Core</MenuItem>
+              <MenuItem value={4}>Full Body</MenuItem>
+            </Select>
+          </FormControl>
 
           {/* // Add slider  */}
-          <WorkoutDurationSlider />
+          <WorkoutDurationSlider classes={classes} />
 
           <Box mb={6}>
             <Button
