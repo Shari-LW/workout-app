@@ -1,5 +1,5 @@
 import authRoutes from "./auth.routes";
-import workoutRoutes from "./workout.routes";
+import workoutRoutes from "./workouts.routes";
 
 function Router(app) {
   app.use(`${process.env.BASE_API_URL}/auth`, authRoutes);
