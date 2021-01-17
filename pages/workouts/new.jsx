@@ -45,40 +45,23 @@ const useStyles = makeStyles((theme) => ({
 
 const NewWorkoutForm = () => {
   const classes = useStyles({});
-  const [formData, setFormData] = React.useState({ email: "", password: "" });
+  const [formData, setFormData] = React.useState({ type: 1, duration: "" });
   const [submitting, setSubmitting] = React.useState(false);
 
   const [workoutType, setWorkoutType] = React.useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
-    const { success, data } = await server.postAsync("/auth/login", {
-      email,
-      password,
+    const { type, duration } = formData;
+    const { success, data } = await server.postAsync("/workouts", {
+      type,
+      duration,
     });
 
     if (success) {
       window.location.replace(data);
       return;
     }
-  };
-
-  const handleChange = async (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    setWorkoutType(e.target.value);
-
-    // const { email, password } = formData;
-    // const { success, data } = await server.postAsync("/auth/login", {
-    //   email,
-    //   password,
-    // });
-
-    // if (success) {
-    //   window.location.replace(data);
-    //   return;
-    // }
   };
 
   return (
@@ -108,9 +91,11 @@ const NewWorkoutForm = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={workoutType}
-              onChange={handleChange}
-              name="workout-type"
+              value={formData.type}
+              onChange={(e) =>
+                setFormData({ ...formData, type: e.target.value })
+              }
+              name="type"
             >
               <MenuItem value={1}>Upper Body</MenuItem>
               <MenuItem value={2}>Lower Body</MenuItem>
@@ -120,7 +105,13 @@ const NewWorkoutForm = () => {
           </FormControl>
 
           {/* // Add slider  */}
-          <WorkoutDurationSlider classes={classes} />
+          <WorkoutDurationSlider
+            classes={classes}
+            name="duration"
+            onChange={(e) =>
+              setFormData({ ...formData, duration: e.target.value })
+            }
+          />
 
           <Box mb={6}>
             <Button
