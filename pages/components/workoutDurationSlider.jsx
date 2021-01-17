@@ -8,6 +8,7 @@ export default function WorkoutDurationSlider({
   name,
   label,
   onChange,
+  defaultValue
 }) {
   const marks = [
     { value: 0, label: "0" },
@@ -28,7 +29,7 @@ export default function WorkoutDurationSlider({
     <div>
       <InputLabel>{label ? label : "Duration (mins)"}</InputLabel>
       <Slider
-        defaultValue={33}
+        defaultValue={defaultValue}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-restrict"
