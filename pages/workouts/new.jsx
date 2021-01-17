@@ -44,11 +44,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewWorkoutForm = () => {
+  const DEFAULT_SLIDER_VALUE = 66;
   const classes = useStyles({});
-  const [formData, setFormData] = React.useState({ type: 1, duration: "" });
+  const [formData, setFormData] = React.useState({ type: 1, duration: DEFAULT_SLIDER_VALUE });
   const [submitting, setSubmitting] = React.useState(false);
-
-  const [workoutType, setWorkoutType] = React.useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,8 +107,9 @@ const NewWorkoutForm = () => {
           <WorkoutDurationSlider
             classes={classes}
             name="duration"
-            onChange={(e) =>
-              setFormData({ ...formData, duration: e.target.value })
+            defaultValue={DEFAULT_SLIDER_VALUE}
+            onChange={(e, v) =>
+              setFormData({ ...formData, duration: v })
             }
           />
 
