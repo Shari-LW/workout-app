@@ -1,5 +1,5 @@
 function getServerApiUrl() {
-  return process.env.BASE_API_URL;
+  return "/api"
 }
 
 const callFetchAsync = async (url, method, body, headers = {}) => {
