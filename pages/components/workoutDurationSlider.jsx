@@ -23,6 +23,8 @@ export default function WorkoutDurationSlider({
 
   function valueLabelFormat(value) {
     return marks.findIndex((mark) => mark.value === value) + 1;
+    let i = marks.findIndex((mark) => mark.value === value);
+    return marks[i].label;
   }
 
   return (
@@ -34,7 +36,7 @@ export default function WorkoutDurationSlider({
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-restrict"
         step={null}
-        valueLabelDisplay="auto"
+        valueLabelDisplay="on"
         marks={marks}
         name={name}
         onChange={onChange}
