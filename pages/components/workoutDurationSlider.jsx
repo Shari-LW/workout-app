@@ -22,7 +22,6 @@ export default function WorkoutDurationSlider({
   }
 
   function valueLabelFormat(value) {
-    return marks.findIndex((mark) => mark.value === value) + 1;
     let i = marks.findIndex((mark) => mark.value === value);
     return marks[i].label;
   }
