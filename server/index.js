@@ -19,10 +19,6 @@ const port = 3000;
 nextApp.prepare().then(async () => {
   const app = express();
 
-  app.get("/my-custom-route", (req, res) =>
-    res.status(200).json({ hello: "Hello, from the back-end world!" })
-  );
-
   app.use(urlencoded({ extended: true }));
   app.use(json());
   app.use(cookieParser());
