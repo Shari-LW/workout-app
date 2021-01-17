@@ -14,6 +14,13 @@ import Select from "@material-ui/core/Select";
 import { server } from "../../utils";
 import WorkoutDurationSlider from "../components/workoutDurationSlider";
 
+const WORKOUT_TYPES = {
+  UpperBody: 1,
+  LowerBody: 2,
+  Core: 3,
+  FullBody: 4
+}
+
 const useStyles = makeStyles((theme) => ({
   layout: {
     display: "flex",
@@ -46,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 const NewWorkoutForm = () => {
   const DEFAULT_SLIDER_VALUE = 66;
   const classes = useStyles({});
-  const [formData, setFormData] = React.useState({ type: 1, duration: DEFAULT_SLIDER_VALUE });
+  const [formData, setFormData] = React.useState({ type: WORKOUT_TYPES.UpperBody, duration: DEFAULT_SLIDER_VALUE });
   const [submitting, setSubmitting] = React.useState(false);
 
   const handleSubmit = async (e) => {
@@ -96,10 +103,10 @@ const NewWorkoutForm = () => {
               }
               name="type"
             >
-              <MenuItem value={1}>Upper Body</MenuItem>
-              <MenuItem value={2}>Lower Body</MenuItem>
-              <MenuItem value={3}>Core</MenuItem>
-              <MenuItem value={4}>Full Body</MenuItem>
+              <MenuItem value={WORKOUT_TYPES.UpperBody}>Upper Body</MenuItem>
+              <MenuItem value={WORKOUT_TYPES.LowerBody}>Lower Body</MenuItem>
+              <MenuItem value={WORKOUT_TYPES.Core}>Core</MenuItem>
+              <MenuItem value={WORKOUT_TYPES.FullBody}>Full Body</MenuItem>
             </Select>
           </FormControl>
 
