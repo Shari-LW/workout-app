@@ -103,7 +103,6 @@ const NewWorkoutForm = () => {
             </Select>
           </FormControl>
 
-          {/* // Add slider  */}
           <WorkoutDurationSlider
             classes={classes}
             name="duration"
