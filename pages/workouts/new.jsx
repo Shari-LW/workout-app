@@ -15,10 +15,9 @@ import { server } from "../../utils";
 import WorkoutDurationSlider from "../components/workoutDurationSlider";
 
 const WORKOUT_TYPES = {
-  UpperBody: "upper-body",
-  LowerBody: "lower-body",
-  Core: "core",
-  FullBody: "full-body",
+  UpperBody: "upperBody",
+  LowerBody: "lowerBody",
+  Core: "core"
 };
 
 const marks = [
@@ -125,7 +124,6 @@ const NewWorkoutForm = () => {
               <MenuItem value={WORKOUT_TYPES.UpperBody}>Upper Body</MenuItem>
               <MenuItem value={WORKOUT_TYPES.LowerBody}>Lower Body</MenuItem>
               <MenuItem value={WORKOUT_TYPES.Core}>Core</MenuItem>
-              <MenuItem value={WORKOUT_TYPES.FullBody}>Full Body</MenuItem>
             </Select>
           </FormControl>
 

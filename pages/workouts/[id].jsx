@@ -1,8 +1,12 @@
 import React from "react";
 
+// TODO: delete this once we hook up to the database!!
+import EXERCISES from '../../data/exercises'
+
 const Workout = ({ data }) => {
   const { workout } = data;
   const { type, duration } = workout;
+  const [exercises, setExercises] = React.useState(EXERCISES)
 
   return (
     <main>
