@@ -1,3 +1,4 @@
 import { UserModel } from "./user";
+import { WorkoutModel } from "./workout";
 
-export { UserModel };
+export { UserModel, WorkoutModel };
