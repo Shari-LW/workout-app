@@ -1,9 +1,14 @@
 import React from "react";
-import { server } from "../../utils";
+import { useRouter } from 'next/router'
 
-const Workout = ({ query }) => {
-  console.log(query);
-  return <main>Hello</main>;
+const Workout = () => {
+  const router = useRouter()
+  const { id } = router.query;
+  return (
+    <main>
+      <div>ID: {id}</div>
+    </main>
+  )
 };
 
 export default Workout;
