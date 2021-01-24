@@ -1,2 +1,3 @@
 import { createWorkout } from "./create";
-export { createWorkout };
+import { getWorkoutById } from "./get";
+export { createWorkout, getWorkoutById };

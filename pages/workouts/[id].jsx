@@ -1,41 +1,32 @@
 import React from "react";
-import { useRouter } from 'next/router'
 
-const Workout = ({ name }) => {
-  console.log(name);
-  const router = useRouter()
-  const { id } = router.query;
+const Workout = ({ data }) => {
+  const { workout } = data;
+  const { type, duration } = workout;
+
   return (
     <main>
-      <div>ID: {id}</div>
-      <div>Name: {name}</div>
+      <div>
+        This workout is of type {type} and duration {duration}
+      </div>
     </main>
-  )
+  );
 };
 
-// TODO: vicki to debug next to figure out how to make this path dynamic
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { id: '1' } },
-    ],
-    fallback: false
-  };
-}
-
-export async function getStaticProps(context) {
-  const res = await fetch(`https://swapi.dev/api/people/1/`)
-  const data = await res.json()
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const res = await fetch(`http://localhost:3000/api/workouts/${params.id}`);
+  const data = await res.json();
 
   if (!data) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
-    props: { name: data.name }
-  }
+    props: { data },
+  };
 }
 
 export default Workout;

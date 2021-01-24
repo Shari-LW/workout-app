@@ -1,6 +1,6 @@
 import express from "express";
 import { to } from "await-to-js";
-import { createWorkout } from "../database/workout";
+import { createWorkout, getWorkoutById } from "../database/workout";
 
 const router = express.Router();
 
@@ -27,6 +27,14 @@ router.post("/", async (req, res) => {
     success: true,
     data: `/workouts/${workout.id}`,
   });
+});
+
+router.get("/:id", async (req, res) => {
+  //We're going to fetch the workout from the database using it's ID
+  const { id } = req.params;
+  const [err, workout] = await to(getWorkoutById(id));
+  res.json({ workout });
+  //We're going to return the workout via the res object
 });
 
 export default router;
