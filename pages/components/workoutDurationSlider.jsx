@@ -12,7 +12,7 @@ export default function WorkoutDurationSlider({
 }) {
   const marks = [
     { value: 0, label: "15" },
-    { value: 66, label: "30" },
+    { value: 50, label: "30" },
     { value: 100, label: "45" },
   ];
 
@@ -20,21 +20,15 @@ export default function WorkoutDurationSlider({
     return `${value} minutes`;
   }
 
-  function valueLabelFormat(value) {
-    let i = marks.findIndex((mark) => mark.value === value);
-    return marks[i].label;
-  }
-
   return (
     <div>
       <InputLabel>{label ? label : "Duration (mins)"}</InputLabel>
       <Slider
         defaultValue={defaultValue}
-        valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-restrict"
         step={null}
-        valueLabelDisplay="on"
+        valueLabelDisplay="off"
         marks={marks}
         name={name}
         onChange={onChange}

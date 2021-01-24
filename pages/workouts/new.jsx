@@ -15,11 +15,11 @@ import { server } from "../../utils";
 import WorkoutDurationSlider from "../components/workoutDurationSlider";
 
 const WORKOUT_TYPES = {
-  UpperBody: 1,
-  LowerBody: 2,
-  Core: 3,
-  FullBody: 4
-}
+  UpperBody: "upper-body",
+  LowerBody: "lower-body",
+  Core: "core",
+  FullBody: "full-body",
+};
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -51,9 +51,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewWorkoutForm = () => {
-  const DEFAULT_SLIDER_VALUE = 66;
+  const DEFAULT_SLIDER_VALUE = 50;
   const classes = useStyles({});
-  const [formData, setFormData] = React.useState({ type: WORKOUT_TYPES.UpperBody, duration: DEFAULT_SLIDER_VALUE });
+  const [formData, setFormData] = React.useState({
+    type: WORKOUT_TYPES.UpperBody,
+    duration: DEFAULT_SLIDER_VALUE,
+  });
   const [submitting, setSubmitting] = React.useState(false);
 
   const handleSubmit = async (e) => {
@@ -114,9 +117,7 @@ const NewWorkoutForm = () => {
             classes={classes}
             name="duration"
             defaultValue={DEFAULT_SLIDER_VALUE}
-            onChange={(e, v) =>
-              setFormData({ ...formData, duration: v })
-            }
+            onChange={(e, v) => setFormData({ ...formData, duration: v })}
           />
 
           <Box mb={6}>
