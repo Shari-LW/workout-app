@@ -21,6 +21,12 @@ const WORKOUT_TYPES = {
   FullBody: "full-body",
 };
 
+const marks = [
+  { value: 0, label: "15" },
+  { value: 50, label: "30" },
+  { value: 100, label: "45" },
+];
+
 const useStyles = makeStyles((theme) => ({
   layout: {
     display: "flex",
@@ -58,6 +64,16 @@ const NewWorkoutForm = () => {
     duration: DEFAULT_SLIDER_VALUE,
   });
   const [submitting, setSubmitting] = React.useState(false);
+
+  const getDurationInSeconds = (duration) => {
+    let matchedMark = marks.filter(function(mark) {
+      return mark.value === duration
+    })[0]
+
+    let durationInMinutes = parseInt(matchedMark.label);
+    return durationInMinutes * 60;
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -117,7 +133,8 @@ const NewWorkoutForm = () => {
             classes={classes}
             name="duration"
             defaultValue={DEFAULT_SLIDER_VALUE}
-            onChange={(e, v) => setFormData({ ...formData, duration: v })}
+            marks={marks}
+            onChange={(e, v) => setFormData({ ...formData, duration: getDurationInSeconds(v) })}
           />
 
           <Box mb={6}>

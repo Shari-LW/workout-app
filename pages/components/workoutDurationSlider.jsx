@@ -9,12 +9,8 @@ export default function WorkoutDurationSlider({
   label,
   onChange,
   defaultValue,
+  marks
 }) {
-  const marks = [
-    { value: 0, label: "15" },
-    { value: 50, label: "30" },
-    { value: 100, label: "45" },
-  ];
 
   function valuetext(value) {
     return `${value} minutes`;
