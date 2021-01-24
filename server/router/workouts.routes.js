@@ -29,6 +29,7 @@ router.post("/", async (req, res) => {
   });
 });
 
+// HOMEWORK: add get "/:workout-type" route to a new exercises.routes.js file
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const [err, workout] = await to(getWorkoutById(id));
