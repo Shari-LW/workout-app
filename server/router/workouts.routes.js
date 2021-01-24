@@ -30,11 +30,9 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  //We're going to fetch the workout from the database using it's ID
   const { id } = req.params;
   const [err, workout] = await to(getWorkoutById(id));
   res.json({ workout });
-  //We're going to return the workout via the res object
 });
 
 export default router;
