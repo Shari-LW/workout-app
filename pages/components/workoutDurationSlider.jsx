@@ -9,16 +9,15 @@ export default function WorkoutDurationSlider({
   label,
   onChange,
   defaultValue,
-  marks
+  marks,
 }) {
-
   function valuetext(value) {
     return `${value} minutes`;
   }
 
   return (
     <div>
-      <InputLabel>{label ? label : "Duration (mins)"}</InputLabel>
+      <InputLabel>{label ? label : "Duration (minutes):"}</InputLabel>
       <Slider
         defaultValue={defaultValue}
         getAriaValueText={valuetext}
