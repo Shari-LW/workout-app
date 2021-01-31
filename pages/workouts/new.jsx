@@ -124,7 +124,6 @@ const NewWorkoutForm = () => {
                     Lower Body
                   </MenuItem>
                   <MenuItem value={WORKOUT_TYPES.Core}>Core</MenuItem>
-                  <MenuItem value={WORKOUT_TYPES.FullBody}>Full Body</MenuItem>
                 </Select>
               </FormControl>
 

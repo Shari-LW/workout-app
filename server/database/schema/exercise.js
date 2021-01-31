@@ -5,7 +5,7 @@ import { model, Schema } from "mongoose";
 const ExerciseSchema = new Schema({
   workoutType: String,
   name: String,
-  teachingPoints: String,
+  teachingPoints: [String],
 });
 
 const ExerciseModel = model("Exercise", ExerciseSchema);

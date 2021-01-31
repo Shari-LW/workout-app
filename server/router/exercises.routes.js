@@ -4,10 +4,10 @@ import { createExercise, getExerciseByWorkoutType } from "../database/exercise";
 
 const router = express.Router();
 
-router.get("/:workout-type", async (req, res) => {
-  const { id } = req.params;
-  const [err, exercise] = await to(getExerciseByWorkoutType(type));
-  res.json({ exercise });
+router.get("/:workoutType", async (req, res) => {
+  const { workoutType } = req.params;
+  const [err, exercises] = await to(getExerciseByWorkoutType(workoutType));
+  res.json({ exercises });
 });
 
 export default router;
