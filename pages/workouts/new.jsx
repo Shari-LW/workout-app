@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 450,
   },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const NewWorkoutForm = () => {
@@ -99,16 +102,21 @@ const NewWorkoutForm = () => {
             >
               <Typography>Type:</Typography>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel> </InputLabel>
+                {/* <InputLabel></InputLabel> */}
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
+                  labelId="demo-simple-select-placeholder-label-label"
+                  id="demo-simple-select-placeholder-label"
+                  displayEmpty
+                  className={classes.selectEmpty}
                   value={formData.type}
                   onChange={(e) =>
                     setFormData({ ...formData, type: e.target.value })
                   }
                   name="type"
                 >
+                  <MenuItem value="" disabled>
+                    Select
+                  </MenuItem>
                   <MenuItem value={WORKOUT_TYPES.UpperBody}>
                     Upper Body
                   </MenuItem>
