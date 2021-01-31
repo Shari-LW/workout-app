@@ -79,6 +79,7 @@ const Workout = ({ workout, exercises }) => {
   const [playerStatus, setPlayerStatus] = React.useState("stopped");
   const [currentExerciseIndex, setCurrentExerciseIndex] = React.useState(0)
 
+
   const onClickStartButton = (e) => {
     setPlayerStatus("playing");
   };
@@ -87,8 +88,10 @@ const Workout = ({ workout, exercises }) => {
     setCurrentExerciseIndex(currentExerciseIndex + 1)
   };
 
-  // TODO: Change AppForm element
+  // https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
+  // setInterval(() => showNextExercise(), 5000)
 
+  // TODO: Change AppForm element
   return (
     <React.Fragment>
       <AppAppBar />
@@ -103,7 +106,9 @@ const Workout = ({ workout, exercises }) => {
           ) : (
             <main>
               <Exercise exercise={exercises[currentExerciseIndex]}>
-                <FormButton type="button" size="large" color="secondary" fullWidth onClick={showNextExercise}>Next</FormButton>
+                {
+                  (currentExerciseIndex === exercises.length - 1) || <FormButton type="button" size="large" color="secondary" fullWidth onClick={showNextExercise}>Next</FormButton>
+                }
               </Exercise>
             </main>
           )
