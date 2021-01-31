@@ -154,7 +154,7 @@ const NewWorkoutForm = () => {
                     className={classes.buttonProgress}
                   />
                 )}
-                {submitting ? "Creating workout..." : "Start"}
+                {submitting ? "Creating workout..." : "Create"}
               </FormButton>
             </form>
           )}
