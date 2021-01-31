@@ -4,12 +4,13 @@ import defer from "../components/defer";
 import Button from "../components/button";
 
 function FormButton(props) {
-  const { disabled, mounted, ...others } = props;
+  const { disabled, mounted, onClick, ...others } = props;
   return (
     <Button
       disabled={!mounted || disabled}
       type="submit"
       variant="contained"
+      onClick={onClick}
       {...others}
     />
   );

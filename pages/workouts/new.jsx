@@ -22,9 +22,9 @@ const WORKOUT_TYPES = {
 };
 
 const marks = [
-  { value: 0, label: "15" },
-  { value: 50, label: "30" },
-  { value: 100, label: "45" },
+  { value: 0, label: "5" },
+  { value: 50, label: "10" },
+  { value: 100, label: "15" },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -47,23 +47,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const getDurationInSeconds = (duration) => {
+  let matchedMark = marks.filter(function (mark) {
+    return mark.value === duration;
+  })[0];
+
+  let durationInMinutes = parseInt(matchedMark.label);
+  return durationInMinutes * 60;
+};
+
 const NewWorkoutForm = () => {
   const DEFAULT_SLIDER_VALUE = 50;
   const classes = useStyles({});
   const [formData, setFormData] = React.useState({
     type: WORKOUT_TYPES.UpperBody,
-    duration: DEFAULT_SLIDER_VALUE,
+    duration: getDurationInSeconds(DEFAULT_SLIDER_VALUE),
   });
   const [submitting, setSubmitting] = React.useState(false);
-
-  const getDurationInSeconds = (duration) => {
-    let matchedMark = marks.filter(function (mark) {
-      return mark.value === duration;
-    })[0];
-
-    let durationInMinutes = parseInt(matchedMark.label);
-    return durationInMinutes * 60;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
