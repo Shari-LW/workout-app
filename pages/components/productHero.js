@@ -60,9 +60,11 @@ function ProductHero(props) {
       >
         create workout
       </Button>
-      <Typography variant="body2" color="inherit" className={classes.more}>
-        Break a sweat!
-      </Typography>
+      <Typography
+        variant="body2"
+        color="inherit"
+        className={classes.more}
+      ></Typography>
     </ProductHeroLayout>
   );
 }

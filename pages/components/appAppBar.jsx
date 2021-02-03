@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 import AppBar from "./appBar";
 import Toolbar, { styles as toolbarStyles } from "./toolbar";
+import Image from "next/image";
 
 const styles = (theme) => ({
   title: {
@@ -33,6 +34,9 @@ const styles = (theme) => ({
   linkSecondary: {
     color: theme.palette.secondary.main,
   },
+  logo: {
+    maxWidth: 60,
+  },
 });
 
 function AppAppBar(props) {
@@ -42,6 +46,7 @@ function AppAppBar(props) {
     <div>
       <AppBar position="fixed">
         <Toolbar className={classes.toolbar}>
+          <img src="/logo/logo.png" alt="logo" className={classes.logo} />
           <div className={classes.left} />
           <Link
             variant="h6"
