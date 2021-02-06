@@ -82,30 +82,30 @@ const WelcomeMessage = ({ type, duration, classes, children }) => {
   );
 };
 
-const exerciseDuration = 45;
+const exerciseDuration = 60;
 
-const ExerciseTimer = () => (
+const ExerciseTimer = ({ setIsResting }) => (
   <CountdownCircleTimer
     width="100"
     height="100"
     onComplete={() => {
+      setIsResting(true);
       // do your stuff here
-      // return [RestTimer]();
-      return [true, 1000]; // repeat animation in 1.5 seconds
     }}
     isPlaying
-    duration={exerciseDuration}
+    duration={45}
     colors="#00c5cd"
   >
     {({ remainingTime }) => remainingTime}
   </CountdownCircleTimer>
 );
 
-const RestTimer = () => (
+const RestTimer = ({ setIsResting }) => (
   <CountdownCircleTimer
     width="100"
     height="100"
     onComplete={() => {
+      setIsResting(false);
       // do your stuff here
       // return [true, 1500]; // repeat animation in 1.5 seconds
     }}
@@ -118,12 +118,14 @@ const RestTimer = () => (
 );
 
 const Exercise = ({ exercise, children }) => {
+  const [isResting, setIsResting] = useState(false);
   return (
     <div>
       <Grid container spacing={3}>
         <Grid item timer>
           {" "}
-          <ExerciseTimer />{" "}
+          {!isResting && <ExerciseTimer setIsResting={setIsResting} />}
+          {isResting && <RestTimer setIsResting={setIsResting} />}
         </Grid>
         <Grid item image={12} sm container>
           <div
@@ -160,6 +162,7 @@ const Exercise = ({ exercise, children }) => {
 };
 
 const Workout = ({ workout, exercises }) => {
+  console.log(exercises);
   const { type, duration } = workout;
   const classes = useStyles({});
   const [playerStatus, setPlayerStatus] = React.useState("stopped");
@@ -168,34 +171,36 @@ const Workout = ({ workout, exercises }) => {
 
   React.useEffect(() => {
     console.log("useEffect", currentExerciseIndex);
-    const timeOut = exerciseDuration * 1000;
-    if (
-      currentExerciseIndex > 0 &&
-      currentExerciseIndex + 1 < exercises.length
-    ) {
+    const timeOut =
+      currentExerciseIndex === 0
+        ? exerciseDuration * 1000 + 1000
+        : exerciseDuration * 1000;
+    console.log(timeOut);
+    if (currentExerciseIndex + 1 < exercises.length) {
       setTimer(setInterval(() => showNextExercise(), timeOut));
     } else if (currentExerciseIndex + 1 >= exercises.length)
-      return () => clearInterval(timer);
+      return () => {
+        clearInterval(timer);
+        setPlayerStatus("complete");
+      };
   }, [currentExerciseIndex]);
 
   const onClickStartButton = (e) => {
     setPlayerStatus("playing");
-    // setInterval(() => showNextExercise(), 2000);
-    showNextExercise();
+
+    setCurrentExerciseIndex(0);
   };
 
   const showNextExercise = () => {
     // console.log("Before", currentExerciseIndex);
     setCurrentExerciseIndex(currentExerciseIndex + 1);
-    // console.log("After", currentExerciseIndex);
-    // setInterval(() => showNextExercise(), 2000);
   };
-
+  console.log(playerStatus);
   return (
     <React.Fragment>
       <AppAppBar />
       <AppForm>
-        {playerStatus === "stopped" ? (
+        {playerStatus === "stopped" && (
           <WelcomeMessage classes={classes} duration={duration} type={type}>
             <FormButton
               className={classes.submit}
@@ -208,22 +213,28 @@ const Workout = ({ workout, exercises }) => {
               Start
             </FormButton>
           </WelcomeMessage>
-        ) : (
+        )}
+
+        {playerStatus === "playing" && (
           <main>
             <Exercise exercise={exercises[currentExerciseIndex]}>
-              {currentExerciseIndex === exercises.length - 1 || (
-                <FormButton
-                  type="button"
-                  size="large"
-                  color="secondary"
-                  fullWidth
-                  onClick={showNextExercise}
-                >
-                  Next
-                </FormButton>
-              )}
+              {/* {currentExerciseIndex === exercises.length - 1 || ( */}
+              <FormButton
+                type="button"
+                size="large"
+                color="secondary"
+                fullWidth
+                onClick={showNextExercise}
+              >
+                Next
+              </FormButton>
             </Exercise>
           </main>
+        )}
+        {playerStatus === "complete" && (
+          <div>
+            <h1>Workout complete!</h1>
+          </div>
         )}
       </AppForm>
       <AppFooter />
