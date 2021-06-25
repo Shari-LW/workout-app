@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import withRoot from "../withRoot";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "../components/typography";
-import AppAppBar from "../components/appAppBar";
-import AppFooter from "../components/appFooter";
-import AppForm from "../form/appForm";
-import FormButton from "../form/formButton";
+import Typography from "../components/AppTypography";
+import AppAppBar from "../components/AppAppBar";
+import AppFooter from "../components/AppFooter";
+import AppForm from "../form/AppForm";
+import FormButton from "../form/FormButton";
 import Image from "next/image";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import Grid from "@material-ui/core/Grid";
@@ -74,6 +74,7 @@ const WelcomeMessage = ({ type, duration, classes, children }) => {
         &nbsp; <br />
       </div>
       <Typography variant="body2" align="center">
+        Each exercise is 45 seconds, with a 15 second rest in between.
         <h5>Make sure to warm-up before starting.</h5>
       </Typography>
 
@@ -171,10 +172,10 @@ const Workout = ({ workout, exercises }) => {
 
   React.useEffect(() => {
     console.log("useEffect", currentExerciseIndex);
-    const timeOut =
-      currentExerciseIndex === 0
-        ? exerciseDuration * 1000 + 1000
-        : exerciseDuration * 1000;
+    const timeOut = exerciseDuration * 1000 + 1000;
+    // currentExerciseIndex === 0
+    //   ? exerciseDuration * 1000 + 1000
+    //   : exerciseDuration * 1000;
     console.log(timeOut);
     if (currentExerciseIndex + 1 < exercises.length) {
       setTimer(setInterval(() => showNextExercise(), timeOut));
@@ -233,7 +234,14 @@ const Workout = ({ workout, exercises }) => {
         )}
         {playerStatus === "complete" && (
           <div>
-            <h1>Workout complete!</h1>
+            <Typography
+              variant="h3"
+              gutterBottom
+              marked="center"
+              align="center"
+            >
+              Workout complete!
+            </Typography>
           </div>
         )}
       </AppForm>

@@ -2,19 +2,19 @@ import withRoot from "../withRoot";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "../components/typography";
-import AppAppBar from "../components/appAppBar";
-import AppFooter from "../components/appFooter";
-import AppForm from "../form/appForm";
+import Typography from "../components/AppTypography";
+import AppAppBar from "../components/AppAppBar";
+import AppFooter from "../components/AppFooter";
+import AppForm from "../form/AppForm";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Field, Form, FormSpy } from "react-final-form";
-import FormButton from "../form/formButton";
+import FormButton from "../form/FormButton";
 import Grid from "@material-ui/core/Grid";
 import { server } from "../../utils";
-import WorkoutDurationSlider from "../components/workoutDurationSlider";
+import WorkoutDurationSlider from "../components/WorkoutDurationSlider";
 
 const WORKOUT_TYPES = {
   UpperBody: "upperBody",
@@ -94,7 +94,7 @@ const NewWorkoutForm = () => {
         </React.Fragment>
 
         <Form onSubmit={handleSubmit}>
-          {({ handleSubmit2, submitting }) => (
+          {({ submitting }) => (
             <form
               method="post"
               className={classes.form}
@@ -103,8 +103,6 @@ const NewWorkoutForm = () => {
             >
               <Typography>Type:</Typography>
               <FormControl variant="outlined" className={classes.formControl}>
-                {/* <InputLabel></InputLabel> */}
-
                 <Select
                   labelId="demo-simple-select-placeholder-label-label"
                   id="demo-simple-select-placeholder-label"

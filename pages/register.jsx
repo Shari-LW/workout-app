@@ -4,12 +4,12 @@ import { Field, Form, FormSpy } from "react-final-form";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Typography from "./components/typography";
-import AppAppBar from "./components/appAppBar";
-import AppFooter from "./components/appFooter";
-import AppForm from "./form/appForm";
-import RFTextField from "./form/rFTextField";
-import FormButton from "./form/formButton";
+import Typography from "./components/AppTypography";
+import AppAppBar from "./components/AppAppBar";
+import AppFooter from "./components/AppFooter";
+import AppForm from "./form/AppForm";
+import TextField from "./components/TextField";
+import FormButton from "./form/FormButton";
 import FormFeedback from "./form/FormFeedback";
 import { server } from "../utils";
 
@@ -79,7 +79,7 @@ const Register = () => {
                 <Grid item xs={12} sm={6}>
                   <Field
                     autoFocus
-                    component={RFTextField}
+                    component={TextField}
                     autoComplete="fname"
                     fullWidth
                     label="First Name"
@@ -94,7 +94,7 @@ const Register = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Field
-                    component={RFTextField}
+                    component={TextField}
                     autoComplete="lname"
                     fullWidth
                     label="Last Name"
@@ -110,7 +110,7 @@ const Register = () => {
               </Grid>
               <Field
                 autoComplete="email"
-                component={RFTextField}
+                component={TextField}
                 disabled={submitting}
                 fullWidth
                 label="Email"
@@ -125,7 +125,7 @@ const Register = () => {
               />
               <Field
                 fullWidth
-                component={RFTextField}
+                component={TextField}
                 disabled={submitting}
                 required
                 name="password"

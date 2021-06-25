@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import defer from "../components/defer";
-import Button from "../components/button";
+import defer from "../components/Defer";
+import Button from "../components/AppButton";
 
 function FormButton(props) {
   const { disabled, mounted, onClick, ...others } = props;

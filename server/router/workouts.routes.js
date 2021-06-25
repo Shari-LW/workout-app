@@ -8,8 +8,6 @@ router.post("/", async (req, res) => {
   const { type, duration } = req.body;
   console.log(`Type: ${type} Duration: ${duration}`);
 
-  // TODO: Think about validation
-
   let [err, workout] = await to(
     createWorkout({
       type,
@@ -29,7 +27,6 @@ router.post("/", async (req, res) => {
   });
 });
 
-// HOMEWORK: add get "/:workout-type" route to a new exercises.routes.js file
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const [err, workout] = await to(getWorkoutById(id));

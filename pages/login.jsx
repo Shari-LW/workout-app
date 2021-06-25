@@ -4,12 +4,12 @@ import { Field, Form, FormSpy } from "react-final-form";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 
-import Typography from "./components/typography";
-import AppAppBar from "./components/appAppBar";
-import AppFooter from "./components/appFooter";
-import AppForm from "./form/appForm";
-import RFTextField from "./form/rFTextField";
-import FormButton from "./form/formButton";
+import Typography from "./components/AppTypography";
+import AppAppBar from "./components/AppAppBar";
+import AppFooter from "./components/AppFooter";
+import AppForm from "./form/AppForm";
+import TextField from "./components/TextField";
+import FormButton from "./form/FormButton";
 import FormFeedback from "./form/FormFeedback";
 import { server } from "../utils";
 
@@ -72,7 +72,7 @@ const LoginForm = () => {
               <Field
                 autoComplete="email"
                 autoFocus
-                component={RFTextField}
+                component={TextField}
                 disabled={submitting}
                 fullWidth
                 label="Email Address"
@@ -89,7 +89,7 @@ const LoginForm = () => {
               <Field
                 fullWidth
                 size="large"
-                component={RFTextField}
+                component={TextField}
                 disabled={submitting}
                 required
                 name="password"

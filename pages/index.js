@@ -1,9 +1,9 @@
 import withRoot from "./withRoot";
 // --- Post bootstrap -----
 import React from "react";
-import AppAppBar from "./components/appAppBar";
-import ProductHero from "./components/productHero";
-import AppFooter from "./components/appFooter";
+import AppAppBar from "./components/AppAppBar";
+import ProductHero from "./components/ProductHero";
+import AppFooter from "./components/AppFooter";
 
 function Index() {
   return (
